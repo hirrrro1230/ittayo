@@ -1,0 +1,15 @@
+body {
+    background-color: white;
+}
+
+.section {
+    padding: 2rem 0;
+}
+
+.navbar-item.is-right {
+    margin-left: auto;
+}
+
+.container {
+    text-align: center;
+}
