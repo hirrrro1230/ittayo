@@ -45,7 +45,7 @@
 
                 <x-input-error :messages="$errors->get('memo')" class="mt-2" />
             </div>
-
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ms-4">
                     {{ __('Register') }}
