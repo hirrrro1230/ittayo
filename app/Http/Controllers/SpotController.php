@@ -21,4 +21,11 @@ class SpotController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function index() {
+        // DBからログインしているユーザーのスポットを取得
+        $spots = Spot::where('user_id', auth()->id())->get();
+        // ダッシュボードに一覧表示させる
+        return view('dashboard', compact('spots'));
+    }
 }

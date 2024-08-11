@@ -41,7 +41,7 @@
 
                 <x-text-input id="memo" class="block mt-1 w-full"
                                 type="textarea"
-                                name="memo" required autocomplete="new-memo" />
+                                name="memo" autocomplete="new-memo" />
 
                 <x-input-error :messages="$errors->get('memo')" class="mt-2" />
             </div>
@@ -52,5 +52,17 @@
                 </x-primary-button>
             </div>
         </form>
+        @if($spots->isEmpty())
+            <p>まだスポット登録がありません</p>
+        @else
+            <ul>
+                @foreach($spots as $spot)
+                    <li>{{ $spot->spot_name }}</li>
+                    <p>{{ $spot->address }}</p>
+                    <p>{{ $spot->name }}</p>
+                    <p>{{ $spot->created_at }}</p>
+                @endforeach
+            </ul>
+        @endif
     </div>
 </x-app-layout>
