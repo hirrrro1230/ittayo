@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <form method="POST" action="{{ route('spot') }}">
+    <div class="py-12 flex justify-center">
+        <form method="POST" action="{{ route('spot') }}" class="w-72 bg-white shadow rounded">
             @csrf
 
             <!-- スポット名 -->
@@ -19,7 +19,7 @@
             <!-- 郵便番号 -->
             <div class="mt-4">
                 <x-input-label for="zip_code" :value="__('郵便番号')" />
-                <x-text-input id="zip_code" class="block mt-1 w-full" type="zip_code" name="zip_code" :value="old('zip_code')" autocomplete="zip_code" />
+                <x-text-input id="zip_code" class="block mt-1 w-full" type="text" name="zip_code" :value="old('zip_code')" autofocus autocomplete="zip_code" />
                 <x-input-error :messages="$errors->get('zip_code')" class="mt-2" />
             </div>
 
@@ -38,11 +38,12 @@
             <!-- メモ -->
             <div class="mt-4">
                 <x-input-label for="memo" :value="__('メモ')" />
-
-                <x-text-input id="memo" class="block mt-1 w-full"
-                                type="textarea"
-                                name="memo" autocomplete="new-memo" />
-
+                <textarea id="memo" 
+                    class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500" 
+                    name="memo" 
+                    rows="4" 
+                    autofocus 
+                    autocomplete="memo"></textarea>
                 <x-input-error :messages="$errors->get('memo')" class="mt-2" />
             </div>
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -52,6 +53,8 @@
                 </x-primary-button>
             </div>
         </form>
+    </div>
+    <div>
         @if($spots->isEmpty())
             <p>まだスポット登録がありません</p>
         @else
