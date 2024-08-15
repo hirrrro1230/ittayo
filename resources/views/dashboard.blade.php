@@ -60,16 +60,18 @@
             </form>
         </div>
     </div>
-    <div>
+    <div class="p-4 bg-gray-100 rounded-lg">
         @if($spots->isEmpty())
-            <p>まだスポット登録がありません</p>
+            <p class="text-center text-gray-600">まだスポット登録がありません</p>
         @else
-            <ul>
+            <ul class="space-y-4">
                 @foreach($spots as $spot)
-                    <li>{{ $spot->spot_name }}</li>
-                    <p>{{ $spot->address }}</p>
-                    <p>{{ $spot->name }}</p>
-                    <p>{{ $spot->created_at }}</p>
+                    <li class="bg-white p-4 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold text-gray-800">{{ $spot->spot_name }}</h3>
+                        <p class="text-gray-600 mt-1"> {{ $spot->address }}</p>
+                        <p class="text-gray-600 mt-1"> {{ $spot->memo }}</p>
+                        <p class="text-gray-500 mt-1 text-sm">{{ $spot->created_at->format('Y/m/d H:i') }}</p>
+                    </li>
                 @endforeach
             </ul>
         @endif
