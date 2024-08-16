@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [SpotController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
+    Route::put('/spot/{spot}', [SpotController::class, 'update'])->name('spot.update');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

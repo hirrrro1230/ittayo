@@ -28,4 +28,18 @@ class SpotController extends Controller
         // ダッシュボードに一覧表示させる
         return view('dashboard', compact('spots'));
     }
+
+    public function update(Request $request, Spot $spot)
+    {
+        $request->validate([
+            'spot_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'memo' => 'nullable|string',
+            'zip_code' => 'nullable|string|max:10',
+        ]);
+
+        $spot->update($request->all());
+
+        return redirect()->route('dashboard')->with('success', 'スポット情報を更新しました。');
+    } 
 }
