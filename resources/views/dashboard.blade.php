@@ -7,7 +7,7 @@
 
     <div x-data="{ open: false, editOpen: false, editData: {} }" class="py-12">
         <!-- ハンバーガーメニューアイコン -->
-            <button @click="open = !open" class="inline-flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 shadow-lg shadow-neutral-500/20 transition active:scale-95">
+            <button @click="open = !open" class="addSpotButton inline-flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 font-medium text-neutral-50 shadow-lg shadow-neutral-500/20 transition active:scale-95">
                 スポットを追加
             </button>
         <!-- フォーム -->
@@ -54,7 +54,7 @@
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button class="ms-4">
-                        {{ __('Register') }}
+                        {{ __('スポット登録') }}
                     </x-primary-button>
                 </div>
             </form>
@@ -93,7 +93,7 @@
                 
                 <div class="flex items-center justify-end mt-4">
                     <x-primary-button class="ms-4">
-                        {{ __('Update') }}
+                        {{ __('更新') }}
                     </x-primary-button>
                 </div>
             </form>
@@ -117,8 +117,11 @@
                                     editOpen = true;
                                     editData = { id: '{{ $spot->id }}', spot_name: '{{ $spot->spot_name }}', zip_code: '{{ $spot->zip_code }}', address: '{{ $spot->address }}', memo: '{{ $spot->memo }}' }
                                 }
-                            " class="mt-2 inline-flex h-10 items-center justify-center rounded-md bg-blue-500 px-4 font-medium text-white shadow-lg shadow-blue-500/20 transition active:scale-95">
+                            " class="editSpotButton mt-2 inline-flex h-10 items-center justify-center rounded-md bg-blue-500 px-4 font-medium text-white shadow-lg shadow-blue-500/20 transition active:scale-95">
                                 編集
+                            </button>
+                            <button type="button" @click="deleteSpot({{ $spot->id }}, $event)" class="deleteSpotButton mt-2 inline-flex h-10 items-center justify-center rounded-md bg-blue-500 px-4 font-medium text-white shadow-lg shadow-blue-500/20 transition active:scale-95">
+                                削除
                             </button>
                         </li>
                     @endforeach
@@ -127,3 +130,27 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function deleteSpot(id, event) {
+        console.log(event)
+        event.preventDefault();
+        event.stopPropagation();
+        alert(id);
+    }
+</script>
+
+<style>
+    .addSpotButton {
+        background-color: #33CCFF !important;
+        color: #f1f1f1 !important;
+    }
+    .editSpotButton {
+        background-color: #99CCCC !important;
+        color: #f1f1f1 !important;
+    }
+    .deleteSpotButton {
+        background-color: #FF0461 !important;
+        color: #f1f1f1 !important;
+    }
+</style>
